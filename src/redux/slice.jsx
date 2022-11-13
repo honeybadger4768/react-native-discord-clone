@@ -4,10 +4,11 @@ const slice = createSlice({
   name: "slice",
   initialState: {
     isLogged: false,
-    username: "",
+    userId: 2,
+    email: "",
     password: "",
     dark: true,
-    currentScreen: [0, 1],
+    currentScreen: [0, 0],
     servers: [],
     dms: []
   },

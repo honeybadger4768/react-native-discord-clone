@@ -1,18 +1,18 @@
 import React from "react";
-import { Image, Pressable, StyleSheet, Text } from "react-native";
+import { Pressable, StyleSheet, Text, Image } from "react-native";
 import { useTheme } from "@react-navigation/native";
 
 const Server = ({name, isClicked, image, onPress, id}) =>{
 
   const {colors} = useTheme()
-
+  //<Image source={image.uri ? {uri: image.uri} : image} style={[styles.serverImage]} />
   return (
     <Pressable onPress={() =>{
       onPress(id)
     }} style={[styles.pressableStyle, {backgroundColor: isClicked ? colors.blueButton: colors.primary}]}>
       {image ? (
-        <Image source={{uri: image}} style={[styles.serverImage]} />
-      ) : (
+        <Image source={image.uri ? {uri: image.uri} : image} style={[styles.serverImage]} />
+        ) : (
         <Text style={[styles.name, {color: colors.text}]} >{name}</Text>
       )}
     </Pressable>

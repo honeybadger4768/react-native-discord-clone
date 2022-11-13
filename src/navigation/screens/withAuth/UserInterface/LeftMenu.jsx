@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Image, StyleSheet, Text, TouchableHighlight, View } from "react-native";
 import RightMenu from "./RightMenu";
+import { DrawerActions, useNavigation } from "@react-navigation/native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { useTheme } from "@react-navigation/native";
 import Server from "../../../../components/Server";
@@ -8,7 +9,8 @@ import { FlashList } from "@shopify/flash-list";
 import { useDispatch, useSelector } from "react-redux";
 import { changeScreen, setDms, setServers } from "../../../../redux/slice";
 import { Input } from "../../../../components/Input";
-import AddChat from "../../../../assets/svg/addChat.svg";
+import AddChat from "../../../../assets/svg/addChat.svg"
+
 
 const Drawer = createDrawerNavigator();
 
@@ -37,14 +39,16 @@ let servers = [
   },
 ];
 
-const LeftMenu = ({ navigation }) => {
+const LeftMenu = ({ }) => {
   const { colors } = useTheme();
 
   const state = useSelector(state => state.slice);
   const dispatch = useDispatch();
+  const navigation = useNavigation()
 
   const onPress = (id) => {
     dispatch(changeScreen({ server: id, channel: 0 }));
+
   };
   useEffect(() => {
     //getServers
@@ -99,13 +103,14 @@ const LeftMenu = ({ navigation }) => {
                 <FlashList
                   renderItem={({ item, index }) => (
                     <TouchableHighlight underlayColor={colors.primary} onPress={() =>{
-                      dispatch(changeScreen({server: 0, channel: index + 1}))
+                      dispatch(changeScreen({server: 0, channel: index}))
+                      navigation.dispatch(DrawerActions.closeDrawer())
                     }}>
                       <View style={[styles.aDmBox, {
-                        backgroundColor: index + 1=== state.currentScreen[1] ? colors.primary : null
+                        backgroundColor: index === state.currentScreen[1] ? colors.primary : null
                       }]}>
                         <Image source={{uri: item?.avatar_url}} style={[styles.avatar]} />
-                        <Text style={[styles.username, {color: state.currentScreen[1] === index + 1 ? colors.text : colors.secondaryText}]}>{item?.login}</Text>
+                        <Text style={[styles.username, {color: state.currentScreen[1] === index ? colors.text : colors.secondaryText}]}>{item?.login}</Text>
                       </View>
                     </TouchableHighlight>
                   )}
