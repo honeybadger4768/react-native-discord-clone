@@ -9,6 +9,7 @@ export const darkTheme = {
     tertiary: "#202225",
     background: "#36393f",
     text: "#fff",
+    secondaryText: "#7e7f84",
     border: "#3e4248",
     blueButton: "#5865f2",
     redButton: "#d83c3e"
