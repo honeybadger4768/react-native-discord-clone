@@ -1,17 +1,31 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+
+export interface sliceState {
+  isLogged: boolean,
+  userId: number,
+  email: string,
+  password: string,
+  dark: boolean,
+  currentScreen: Array<number>,
+  servers: Array<any>,
+  dms: Array<any>
+}
+
+const initialState: sliceState = {
+  isLogged: false,
+  userId: 2,
+  email: "",
+  password: "",
+  dark: true,
+  currentScreen: [0, 0],
+  servers: [],
+  dms: []
+}
+
 const slice = createSlice({
   name: "slice",
-  initialState: {
-    isLogged: false,
-    userId: 2,
-    email: "",
-    password: "",
-    dark: true,
-    currentScreen: [0, 0],
-    servers: [],
-    dms: []
-  },
+  initialState: initialState,
   reducers: {
     login: (state, action) => {
       const { email, password } = action.payload;

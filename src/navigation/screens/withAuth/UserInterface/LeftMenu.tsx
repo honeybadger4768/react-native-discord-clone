@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Image, StyleSheet, Text, TouchableHighlight, View } from "react-native";
-import RightMenu from "./RightMenu";
+import RightMenu from "./RightMenu ";
 import { DrawerActions, useNavigation } from "@react-navigation/native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { useTheme } from "@react-navigation/native";

@@ -4,7 +4,7 @@ import { useTheme } from "@react-navigation/native";
 import { useSelector } from "react-redux";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import LeftMenu from "./UserInterface/LeftMenu";
-import Chat from "./UserInterface/RightMenu";
+import Chat from "./UserInterface/RightMenu ";
 //const DrawerLeft = createDrawerNavigator()
 
 const MadeAuth = () =>{
