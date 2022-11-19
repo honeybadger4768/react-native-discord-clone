@@ -1,17 +1,27 @@
 import React from "react";
-import { Pressable, StyleSheet, Text, Image } from "react-native";
-import { useTheme } from "@react-navigation/native";
+import {Pressable, StyleSheet, Text, Image, GestureResponderEvent, ImageProps, ImageSourcePropType} from "react-native";
+import {Theme, useTheme} from "@react-navigation/native";
+import {myDarkTheme} from "../utils/themes";
 
-const Server = ({name, isClicked, image, onPress, id}) =>{
+interface ServerProps {
+  name?: string,
+  isClicked: boolean,
+  image?: string,
+  onPress?: (id:number) => number | undefined,
+  id: number
+}
 
-  const {colors} = useTheme()
+
+const Server : React.FC<ServerProps> = ({name, isClicked, image, onPress, id}) =>{
+
+  const {colors} = useTheme() as myDarkTheme
   //<Image source={image.uri ? {uri: image.uri} : image} style={[styles.serverImage]} />
   return (
     <Pressable onPress={() =>{
-      onPress(id)
+      if(onPress) onPress(id)
     }} style={[styles.pressableStyle, {backgroundColor: isClicked ? colors.blueButton: colors.primary}]}>
       {image ? (
-        <Image source={image.uri ? {uri: image.uri} : image} style={[styles.serverImage]} />
+        <Image source={{uri: image}} style={[styles.serverImage]} />
         ) : (
         <Text style={[styles.name, {color: colors.text}]} >{name}</Text>
       )}

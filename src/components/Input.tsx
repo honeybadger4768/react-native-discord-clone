@@ -1,7 +1,8 @@
 import React from "react";
 import {TextInput} from "react-native";
+import {TextInputProps} from "react-native";
 
-export const Input = ({ style, onChangeText, onBlur, value, ...props}) =>{
+export const Input : React.FC<TextInputProps> = ({ style, onChangeText, onBlur, value, ...props}) =>{
   return (
     <TextInput
       {...props}
